@@ -1,23 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import Tab from './Tab.jsx';
+import  { createContext , useContext } from 'react'
+import { useEffect , useState  } from 'react'
+export const AppContext = createContext(null)
 
 function App() {
+  let [data , setData] = useState([])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppContext.Provider value={{data , setData}}>
+          <Tab />
+      </AppContext.Provider>
     </div>
   );
 }
