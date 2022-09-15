@@ -1,7 +1,6 @@
 import './App.css';
 import Tab from './Tab.jsx';
-import  { createContext  } from 'react'
-import {  useState  } from 'react'
+import  { createContext , useState } from 'react'
 export const AppContext = createContext(null)
 
 function App() {
