@@ -9,6 +9,7 @@ import GetData from "./api";
 import { useContext } from 'react'
 import { AppContext } from './App'
 import Sidebar from './sidebar/sidebar.jsx'
+import Tableaux from "./Tableaux";
 // start api 
 
 // end api
@@ -27,6 +28,7 @@ const Tab = () => {
              
           <h3>Amouda Table</h3>
           <GetData />
+          <Tableaux />
 
               {/* <ReactTabulator
                 columns={editableColumns}

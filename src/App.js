@@ -1,11 +1,11 @@
 import './App.css';
 import Tab from './Tab.jsx';
-import  { createContext , useContext } from 'react'
-import { useEffect , useState  } from 'react'
+import  { createContext  } from 'react'
+import {  useState  } from 'react'
 export const AppContext = createContext(null)
 
 function App() {
-  let [data , setData] = useState([])
+  let [ data , setData ] = useState([])
   return (
     <div className="App">
       <AppContext.Provider value={{data , setData}}>
