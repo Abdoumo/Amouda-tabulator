@@ -9,9 +9,11 @@ import { useContext } from 'react'
 let container = 'MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root'
 let outlined = 'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root'
 
-const GrouppedBy = () => {
-  
-  return (
+const GrouppedBy = React.forwardRef((props , ref) => {
+  // let { setoptions } = useContext(optionsContext)
+  // let { options } = useContext(optionsContext)
+  let [counter , setcounter] = React.useState(0)
+    return (
     <div>
         <Stack spacing={2}  columns={{ xs: 4, sm: 8, md: 12 }}>
           
@@ -26,22 +28,24 @@ const GrouppedBy = () => {
     </Stack>
     </div>
   )
+  function DisplayResult(event){
+    
+    
+    // let { setoptions } = useContext(optionsContext)
+    let contained = 'MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root'
+    let outlined = 'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root'
+    
+    // change class of contained and outlined button
+    event.target.className === contained ? event.target.className = outlined : event.target.className = contained 
+    let targetName = event.target.textContent.toLowerCase()
+    ref.current['groupBy'].push(targetName)    
+    console.log(targetName)
+    setcounter((e) => e + 1)
+    console.log(counter)
+  }
 }
+)
 
-function DisplayResult(event){
-  // let { options } = useContext(optionsContext)
-  
-  // let { setoptions } = useContext(optionsContext)
-  let contained = 'MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root'
-  let outlined = 'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root'
-  
-  // change class of contained and outlined button
-  event.target.className === contained ? event.target.className = outlined : event.target.className = contained 
-  let targetName = event.target.textContent.toLowerCase()
-    // setoptions(options['groupBy'].push[targetName])
-  // setoptions(options['groupBy'].push[event.target.textContent.toLowerCase()])
-  console.log(targetName)
-}
 
 
 export default GrouppedBy

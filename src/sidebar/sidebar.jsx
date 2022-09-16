@@ -4,16 +4,16 @@ import Visibilte from './Visibilte'
 
 
 
-const Sidebar = () => {
+const Sidebar = React.forwardRef((props, ref) => {
   
   return (
     <div>
       
-        <GrouppedBy />
+        <GrouppedBy ref = {ref} />
         <Visibilte />
      
     </div>
   )
-}
+})
 
 export default Sidebar

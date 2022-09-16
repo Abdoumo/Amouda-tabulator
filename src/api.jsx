@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AppContext } from './App'
-import { useLayoutEffect   } from 'react'
+import { useEffect } from 'react'
 
 let consumer_key='ck_e854f39d2a1dcb53f510853ae9eab32956b9e01b'
 let  consumer_secret='cs_4de5eee7d22326fc91f73fdbfc3909b33613fa9a'
@@ -12,7 +12,7 @@ let baseUrl = `${shopLink}/wp-json/wc/v3/${products}?per_page=100&consumer_key=$
 function GetData()  {
   let {setData} = useContext(AppContext)
   let {data} = useContext(AppContext)
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetch(baseUrl).then((get) => {
       return get.json()
     }).then((json) => {
@@ -21,7 +21,7 @@ function GetData()  {
 
       
     }).catch(err => console.log(err))
-  }, [])
+  })
   let user = data.map(value => {
     return (
 
