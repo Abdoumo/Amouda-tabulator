@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import {optionsContext} from '../Tab.jsx'
-import { useContext } from 'react'
+
 
 
 
@@ -10,9 +9,7 @@ let container = 'MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton
 let outlined = 'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root'
 
 const GrouppedBy = React.forwardRef((props , ref) => {
-  // let { setoptions } = useContext(optionsContext)
-  // let { options } = useContext(optionsContext)
-  let [counter , setcounter] = React.useState(0)
+  
     return (
     <div>
         <Stack spacing={2}  columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -39,9 +36,7 @@ const GrouppedBy = React.forwardRef((props , ref) => {
     event.target.className === contained ? event.target.className = outlined : event.target.className = contained 
     let targetName = event.target.textContent.toLowerCase()
     ref.current['groupBy'].push(targetName)    
-    console.log(targetName)
     setcounter((e) => e + 1)
-    console.log(counter)
   }
 }
 )

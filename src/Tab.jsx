@@ -5,10 +5,7 @@ import GetData from "./api";
 import Sidebar from './sidebar/sidebar.jsx'
 import Tableaux from "./Tableaux.jsx";
 
-// start api 
-// end api
 
-// start data-tabulator
 
 
 const Tab = () => {
@@ -18,7 +15,7 @@ const Tab = () => {
         groupBy : []
       })
   
-  // console.log('here' , data) // data variable public
+  
   return (
     <div> 
     

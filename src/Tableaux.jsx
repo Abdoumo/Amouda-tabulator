@@ -78,16 +78,7 @@ const Tableaux = React.forwardRef((props , ref) => {
         },
   ]
   
- console.log(ref , 'g')
-  // setoptions({
-  //     movableRows: true,
-  //     movableColumns: true, 
-  //     groupBy : []
-  //   })
-  
-  
-   
-  // groupBy:["name" , "date_created"],
+
 return (
   <div>
        <ReactTabulator
