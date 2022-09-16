@@ -23,7 +23,7 @@ const Tab = () => {
           <div className="tabulator">
              
           <h3>Amouda Table</h3>
-          <GetData />
+          <GetData ref={options} />
               <Tableaux ref={options} />
               
           </div>

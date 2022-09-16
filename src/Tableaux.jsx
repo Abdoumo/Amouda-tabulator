@@ -77,7 +77,6 @@ const Tableaux = React.forwardRef((props , ref) => {
           headerFilter: "input"    
         },
   ]
-  
 
 return (
   <div>

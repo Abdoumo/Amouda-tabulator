@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React ,  { useContext } from 'react'
 import { AppContext } from './App'
 import { useEffect } from 'react'
 
@@ -9,7 +9,7 @@ let products = 'products'
 let baseUrl = `${shopLink}/wp-json/wc/v3/${products}?per_page=100&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`
 
 
-function GetData()  {
+const GetData = React.forwardRef((props , ref) => {
   let {setData} = useContext(AppContext)
   let {data} = useContext(AppContext)
   useEffect(() => {
@@ -21,7 +21,8 @@ function GetData()  {
 
       
     }).catch(err => console.log(err))
-  })
+  } , [data])
+  
   let user = data.map(value => {
     return (
 
@@ -34,7 +35,7 @@ function GetData()  {
     </div>
   );
   
-}
+})
 
 
 export default GetData
