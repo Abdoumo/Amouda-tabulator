@@ -35,8 +35,15 @@ const GrouppedBy = React.forwardRef((props , ref) => {
     // change class of contained and outlined button
     event.target.className === contained ? event.target.className = outlined : event.target.className = contained 
     let targetName = event.target.textContent.toLowerCase()
-    ref.current['groupBy'].push(targetName)    
-    setcounter((e) => e + 1)
+    let groupped = ref.current['groupBy']
+    if (groupped.find(ele => ele == targetName) ==  undefined){
+      groupped.push(targetName)    
+    }else {
+      const index = groupped.indexOf(targetName); // find if ele in the array
+      groupped.splice(index, 1) // delete just one item with that name
+    }
+   
+
   }
 }
 )
