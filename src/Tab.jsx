@@ -12,7 +12,7 @@ const Tab = () => {
   const options = useRef({
         movableRows: true,
         movableColumns: true, 
-        groupBy : ['Product']
+        groupBy : []
       })
 
   return (
