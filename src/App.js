@@ -4,7 +4,10 @@ import  { createContext , useState } from 'react'
 export const AppContext = createContext(null)
 
 function App() {
-  let [ data , setData ] = useState([])
+  let [ data , setData ] = useState([''])
+  // if (data[0] != ''){
+  //   console.log(data)
+  // }
   return (
     <div className="App">
       <AppContext.Provider value={{data , setData}}>

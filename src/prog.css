@@ -1,0 +1,11 @@
+#progressForStyling{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25%;
+    
+}
+/* .css-1idz92c-MuiCircularProgress-svg{
+    width: 300%;
+} */
+

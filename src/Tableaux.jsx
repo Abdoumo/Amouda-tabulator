@@ -1,94 +1,142 @@
-import React, { useContext  , useState} from 'react'
+import React, { useContext, useRef  } from 'react'
 import { AppContext } from './App'
 import "react-tabulator/lib/styles.css"; // default theme
 import "react-tabulator/css/bootstrap/tabulator_bootstrap.min.css"; // use Theme(s)
 import { ReactTabulator } from "react-tabulator";
+import  CircularIndeterminate  from './Progress.jsx'
+
+import 'react-tabulator/lib/styles.css'; // default theme
+import 'react-tabulator/css/bootstrap/tabulator_bootstrap.min.css'; // use Theme(s)
+
+// import { Tabulator } from 'tabulator-tables';
+////
 
 
+
+
+////
 const Tableaux = React.forwardRef((props , ref) => {
-    
-  
   let {data} = useContext(AppContext)
-  // table data
-  const tableData = [];
-  data.forEach(element => {
-      tableData.push(
-          { 
-              'name':element.name,
-              'price': element.price,
-              'date_created' :  element.date_created,
-              'tax_status' :  element.tax_status,
-              'slug' :  element.slug,
-              'stock_status': element.stock_status
-          },
-          )
-  })
 
-  // editableColumns
+
+var editableColumns = []
+ const dataVs = useRef([])
+// console.log(...props)
+
+// var tableData = [
+//   {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+//   {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+//   {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+//   {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+//   {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+//   {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+//   {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+//   {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+//   {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+//   {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+//   {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+//   {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+// ]
+
+// var table = new Tabulator("#example-table", {
+//   data:tableData, //set initial table data
+//   height:"311px",
+//   layout:"fitColumns",
+//   movableRows:true,
+//   groupBy:["gender" , "Gender"],
+//   columns:[
+//       {title:"Name", field:"name"},
+//       {title:"Age", field:"age"},
+//       {title:"Gender", field:"gender"},
+//       {title:"Height", field:"height"},
+//       {title:"Favourite Color", field:"col"},
+//       {title:"Date Of Birth", field:"dob"},
+//       {title:"Cheese Preference", field:"cheese"},
+//   ],
+// });
+
+
+
+
+  if (data[0] !== ''){
+
+    
+    // dataKeys.length = 10
+    
+    let dataKeys = Object.keys(data[0])
+    console.log()
+    let widthCol = 100 / dataKeys.length
+    for (let i = 0 ; i < dataKeys.length ; i++){
+      editableColumns.push({
+        movableColumns: true, 
+        title: dataKeys[i],
+        field: dataKeys[i],
+        width : `${widthCol}%` , 
+        headerHozAlign:"center", // => Age title  
+        hozAlign : 'center', // the progress bar
+        formatter: "textarea",
+        editor: "textarea",      
+        headerFilter: "input"
+      },
+      )}
   
-  let editableColumns = [
-      {
-          title: "Name",
-          field: "name",
-          width: 150,
-          formatter: "textarea",
-          editor: "textarea", 
-          headerFilter: "input"
-        },
-        {
-          title: "Price Da",
-          field: `price`,
-          headerHozAlign:"center", // => Age title  
-          hozAlign : 'center', // the progress bar
-          formatter: "textarea",
-          editor: "textarea",  
-          headerFilter: "input"    
-        },{
-          title: "date_created",
-          field: "date_created",
-          headerHozAlign:"center", // => Age title  
-          hozAlign : 'center', // the progress bar
-          formatter: "textarea",
-          editor: "textarea",      
-          headerFilter: "input"
-        },{
-          title: "stock_status",
-          field: "stock_status",
-          headerHozAlign:"center", // => Age title  
-          hozAlign : 'center', // the progress bar
-          formatter: "textarea",
-          editor: "textarea",    
-          headerFilter: "input"   
-        },{
-          title: "tax_status",
-          field: "tax_status",
-          headerHozAlign:"center", // => Age title  
-          hozAlign : 'center', // the progress bar
-          formatter: "textarea",
-          editor: "textarea",   
-          headerFilter: "input"   
-        },{
-          title: "slug",
-          field: "slug",
-          headerHozAlign:"center", // => Age title  
-          hozAlign : 'center', // the progress bar
-          formatter: "textarea",
-          editor: "textarea",  
-          headerFilter: "input"    
-        },
-  ]
+      let dataV = [] 
 
-return (
+      for(let i = 0; i < data.length; i++){
+        let datum = {}
+        dataKeys.forEach(element => {
+          if(!data[i][element]['value']){
+            datum[element] = '_________'
+          }else {
+
+            datum[element] = data[i][element]['value']
+          }
+        })
+        dataV.push(datum)
+      }
+      // dataVsElm(dataV)
+      dataVs.current[0] = dataV
+
+
+      
+    }
+
+  
+  return (
+    // <div id='example-table'> </div>
   <div>
-       <ReactTabulator
-        columns={editableColumns}
-        data={tableData}
-        options = {ref.current}
-        // footerElement={<span>Footer</span>}
-
-      />
+{data[0] === '' ? (
+        <>
+        <div id='progressForStyling'>
+        <h1>Data is loading .....  </h1>
+          <CircularIndeterminate  /> </div>
+        </>
+        
+        ) : (
+          <> 
+         
+            <ReactTabulator
+            
+          
+            columns={editableColumns}
+            data={dataVs.current[0]}
+            // data={data}
+            options = {ref.current}
+            // footerElement={<span>Footer</span>}
+            /> 
+          </>
+      )}
+    
+       
   </div>
 )
 })
 
 export default Tableaux
+
+
+
+
+
+
+
