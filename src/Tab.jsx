@@ -1,19 +1,15 @@
 import React , {   useRef  } from 'react'
 import './Tab.css'
 import GetData from "./api";
-
-import Sidebar from './sidebar/sidebar.jsx'
+import GrouppedBy from "./sidebar/grouppedBy.jsx";
+import Visibilte from "./sidebar/Visibilte.jsx";
 import Tableaux from "./Tableaux.jsx";
 
 
 
 
 const Tab = () => {
-  const options = useRef({
-        movableRows: true,
-        movableColumns: true, 
-        groupBy : []
-      })
+  const options = useRef(null)
 
   return (
     <div> 
@@ -29,7 +25,8 @@ const Tab = () => {
 
           <div className="sidebar">
             <h4>Groupped here</h4>
-            <Sidebar ref={options} />
+            <GrouppedBy ref = {options} />
+             <Visibilte ref = {options}/>
           </div>
         </div>
        
