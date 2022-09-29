@@ -1,32 +1,101 @@
-import React, { forwardRef } from 'react'
-
-// import "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"
-// import "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.5/jspdf.plugin.autotable.js"
-
+import React, { useContext ,  forwardRef } from 'react'
+import "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"
+import "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"
 import 'https://oss.sheetjs.com/sheetjs/xlsx.full.min.js'
+import "jspdf-autotable";
+//
+import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { faFileExport, faFileCsv, faFileExcel, faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-// import "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.10/jspdf.plugin.autotable.min.js"
-import * as jsPDF from 'jspdf';
-import 'jspdf-autotable';
-
-
-// import * as autoTable from 'jspdf-autotable'
 
 const Export = forwardRef((props , options) => {
-   
+
+
+  return (
+    <Card className="text-left mt-2">
+      <Card.Header>
+        <FontAwesomeIcon icon={faFileExport} /> Export
+      </Card.Header>
+      <Card.Body className="text-center text-dark pr-1 pl-1">
+        <Container>
+          <Row className="justify-content-md-center">
+            
+              <Col xs={12} style={{ padding: 2 }}>
+                <Button
+                  variant="outline-dark"
+                  style={{
+                    fontSize: '0.7vw',
+                    margin: 1,
+                    padding: 10,
+                    textAlign: 'center',
+                    fontWeight: 400,
+                    width: '75%',
+                  }}
+                  onClick={Csv}
+                  
+                >
+                  <FontAwesomeIcon icon={faFileCsv} /> Csv
+                </Button>
+                
+              </Col>
+              <Col xs={12} style={{ padding: 2 }}>
+                <Button
+                  variant="outline-dark"
+                  style={{
+                    fontSize: '0.7vw',
+                    margin: 1,
+                    padding: 10,
+                    textAlign: 'center',
+                    fontWeight: 400,
+                    width: '75%',
+                  }}
+                  onClick={Xlsx}
+                  
+                >
+                  <FontAwesomeIcon icon={faFileExcel} /> Excel
+                </Button>
+                
+              </Col>
+              <Col xs={12} style={{ padding: 2 }}>
+                <Button
+                  variant="outline-dark"
+                  style={{
+                    fontSize: '0.7vw',
+                    margin: 1,
+                    padding: 10,
+                    textAlign: 'center',
+                    fontWeight: 400,
+                    width: '75%',
+                  }}
+                  onClick={Pdf}
+                  
+                >
+                  <FontAwesomeIcon icon={faFilePdf} /> Pdf
+                </Button>
+                
+              </Col>
+            
+          </Row>
+        </Container>
+      </Card.Body>
+    </Card>
+  );
+
+
   return (
     <div>
         <h3>Export Data</h3>
         <button onClick={Csv} >Export Csv</button>
         <button onClick={Html} >Export Html</button>
         <button onClick={Pdf} >Export Pdf</button>
-        <button onClick={Xlsx} >Export xlsx</button>
+        <button onClick={Xlsx} >Export Excel</button>
     </div>
   )
 
   function Csv(){
-      options.current.download("csv", "data.csv", {delimiter:"."});
+    options.current.download("csv", "data.csv", {delimiter:"."});
     }
     function Xlsx(){
       options.current.download("xlsx", "data.xlsx",{
@@ -44,31 +113,13 @@ const Export = forwardRef((props , options) => {
         }
     });
     
-}
+  } 
 
-
+  
 
 function Pdf(){
-    options.current.download("pdf", "data.pdf", {
-        orientation:"portrait", //set page orientation to portrait
-        title:"Dynamics Quotation Report", //add title to report
-        jsPDF:{
-            unit:"in", //set units to inches
-        },
-        autoTable:{ //advanced table styling
-            styles: {
-                fillColor: [100, 255, 255]
-            },
-            columnStyles: {
-                id: {fillColor: 255}
-            },
-            margin: {top: 60},
-        },
-        documentProcessing:function(doc){
-            //carry out an action on the doc object
-        }
-    });
-
+  
+  options.current.downloadToTab("pdf"); 
 
 }
 
