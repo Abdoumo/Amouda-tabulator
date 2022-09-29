@@ -46,6 +46,8 @@ const Export = forwardRef((props , options) => {
     
 }
 
+
+
 function Pdf(){
     options.current.download("pdf", "data.pdf", {
         orientation:"portrait", //set page orientation to portrait
