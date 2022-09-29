@@ -4,6 +4,7 @@ import GetData from "./api";
 import GrouppedBy from "./sidebar/grouppedBy.jsx";
 import Visibilte from "./sidebar/Visibilte.jsx";
 import Tableaux from "./Tableaux.jsx";
+import Export from './sidebar/Export';
 
 
 
@@ -27,6 +28,7 @@ const Tab = () => {
             <h4>Groupped here</h4>
             <GrouppedBy ref = {options} />
              <Visibilte ref = {options}/>
+             <Export ref = {options} />
           </div>
         </div>
        

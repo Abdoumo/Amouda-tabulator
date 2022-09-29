@@ -8,8 +8,12 @@ import  CircularIndeterminate  from './Progress.jsx'
 import 'react-tabulator/lib/styles.css'; // default theme
 import 'react-tabulator/css/bootstrap/tabulator_bootstrap.min.css'; // use Theme(s)
 
+
+// import 'https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.7.2/css/tabulator.min.css'
 // import { Tabulator } from 'tabulator-tables';
-////
+// import 'https://surveyjs.azureedge.net/1.7.25/survey.analytics.tabulator.css'
+// import "https://surveyjs.azureedge.net/1.7.25/survey.analytics.tabulator.js"
+// ////
 
 
 
@@ -32,7 +36,6 @@ var editableColumns = []
   movableRows: true,
   movableColumns: true,
   layoutColumnsOnNewData: true,
-  // height: 600,
   responsiveLayout: 'hide',
   selectable: true,
   paginationSize: 10,
